@@ -6,3 +6,4 @@ databases
 bcrypt
 python-jose
 python-multipart
+cx_oracle
