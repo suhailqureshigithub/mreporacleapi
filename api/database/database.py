@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import databases
+
+# import databases
 import sqlalchemy
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -18,11 +19,11 @@ SessionLocal=sessionmaker(autocommit=False,autoflush=False,bind=engine)
 
 connect_url = URL(
     "oracle+cx_oracle",
-    username="scott",
-    password="tiger",
-    host="196.16.16.106",
+    username="apps",
+    password="apps",
+    host="192.168.130.41",
     port="1521",
-    database="sir"
+    database="prod"
 )
 
 oracleEngine =create_engine(connect_url)
