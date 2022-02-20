@@ -1,3 +1,4 @@
+import sourcedefender
 from typing import List
 from pydantic import fields
 from pydantic.fields import Field
@@ -18,21 +19,19 @@ def salesData(db: Session,apiKey):
     return salesData
 
 
-def salesDataDate(fromDate,toDate
-                    ,db: Session,apiKey
-                    ,limit: int=500
-                    ):
+def salesDataDate(fromDate, toDate,
+                db: Session, apiKey, limit: int = 500
+                ):
 
     if apiKey!=apiKeyList.MREP_APIKEY:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND
                             ,detail='Invalid or Missing API-Key')
 
     salesData=db.query(oracleModels.MrepSasData).filter(
-        and_(oracleModels.MrepSasData.INVOICEDATE>=fromDate
-            ,oracleModels.MrepSasData.INVOICEDATE<=toDate)
-        ).order_by(oracleModels.MrepSasData.INVOICEDATE,oracleModels.MrepSasData.INVOICE
+        and_(oracleModels.MrepSasData.BILL_DT >= fromDate
+            , oracleModels.MrepSasData.BILL_DT <= toDate)
+        ).order_by(oracleModels.MrepSasData.BILL_DT,oracleModels.MrepSasData.BILL_NO
                 ).all()
-
     return salesData
 
 def distinctCustomer(fromDate,toDate,db: Session,apiKey
